@@ -1,45 +1,35 @@
-
-wybor = input("Please specify a command [list, add, mark, archive]: ")
-
 def wyswietl():
     print("You saved the following to-do items:\n")
-    plik = open("text.txt", "r")
-    i = 0
-    for linia in plik:
-        i += 1
-        print(str(i) + ". " + linia)
-    plik.close()
+    with open('text.txt', 'r') as plik:
+        i = 0
+        for linia in plik:
+            i += 1
+            print(str(i) + ". " + linia + "\n")
 
-if wybor == "add":
+
+def dodawanie():
     dodaj = input("Add an item: ")
-    plik = open("text.txt", "a")
-    zmienna = ("[ ] " + str(dodaj))
-    plik.write(zmienna)
-    print("Item added.")
-    plik.close()
+    with open('text.txt', 'a') as plik:
+        zmienna = ("[ ] " + str(dodaj) + "\n")
+        plik.write(zmienna)
+        print("Item added.")
 
-elif wybor == "list":
-    wyswietl()
-        
-elif wybor == "mark":
-    wyswietl()
+
+def wykonane():
     wybor = int(input("Which one you want to mark as completed: ")) - 1
-    plik = open("text.txt", "r")
-    caly = plik.readlines()
-    plik.close()
+    with open('text.txt', 'r') as plik:
+        caly = plik.readlines()
     litery = list(caly[wybor])
     litery[1] = 'x'
     litery = ''.join(litery)
     caly[wybor] = litery
-    plik = open("text.txt", "w")
-    plik.write("".join(caly))
-    #print(caly[wybor] + "is completed")
-    plik.close()
+    with open('text.txt', 'w') as plik:
+        plik.write("".join(caly))
 
-elif wybor == "archive":
-    plik = open("text.txt", "r")
-    caly = plik.readlines()
-    plik.close()
+
+def usuwanie():
+    with open('text.txt', 'r') as plik:
+        caly = plik.readlines()
     w = 0
     while w < len(caly):
         zmienna = list(caly[w])
@@ -47,7 +37,31 @@ elif wybor == "archive":
             caly.remove(caly[w])
             w -= 1
         w += 1
-    plik = open("text.txt", "w")
-    plik.write("".join(caly))
-    #print(caly[wybor] + "is completed")
-    plik.close()
+    with open('text.txt', 'w') as plik:
+        plik.write("".join(caly))
+
+
+def start():
+    while True:
+        wybor = input("Please specify a command [list, add, mark, archive, exit]: ")
+        if wybor == "add":
+            dodawanie()
+
+        elif wybor == "list":
+            wyswietl()
+
+        elif wybor == "mark":
+            wyswietl()
+            wykonane()
+
+        elif wybor == "archive":
+            usuwanie()
+
+        elif wybor == "exit":
+            break
+
+        else:
+            print("You've typed something wrong, try again later")
+
+
+start()
