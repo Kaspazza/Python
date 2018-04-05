@@ -1,4 +1,5 @@
 import random
+import json
 from datetime import datetime
 
 hangman = (
@@ -9,6 +10,8 @@ hangman = (
     "\n_______\n|      |\n|      O _ (I do not like it very much..)\n|     /|\ \n| \n|\ \n| \ \n",
     "\n_______\n|      |\n|      O _ (Last chance, cowboy!)\n|     /|\ \n|     / \ \n|\ \n| \ \n",
     "\n_______\n|      |\n|      x _ (I'm dead LOL, You happy?)\n|     /|\ \n|     / \ \n|\ \n| \ \n")
+
+not_in_word = []
 
 
 def rysowanie(points):
@@ -29,15 +32,16 @@ def rysowanie(points):
 start_time = datetime.now()
 dic = {}
 print(hangman[0])
-print("Welcome to hangman, his life depends on you!")
+print("\nWelcome to hangman, his life depends on you!")
 print("1.Start game")
 print("2.How to play")
 print("3.Leaderboard")
 print("4.Exit")
-num = input("what you want to do?")
+num = input("\nWhat o You want to do? ")
 while True:
     if num == "1":
-        with open("countriesandcapitals.txt", "r") as capitals:
+        user_name = input("What's Your Name? ")
+        with open("Hangman/countriesandcapitals.txt", "r") as capitals:
             for line in capitals:
                 (key, val) = line.split(" | ")
                 dic[key] = val
@@ -63,11 +67,12 @@ while True:
 
         while True:
             rysowanie(points)
+            print("Letters You failed guessing: ", ", ".join(not_in_word), end=".\n")
             if points >= 5:
                 print("You lost!")
                 break
             elif points <= 5 and ("".join(hidden_password)) != password:
-                letter_or_word = input('Type: "l" if You want to guess letter or "w" if You want a word.')
+                letter_or_word = input('Type: "l" if You want to guess letter or "w" if You know whole capital name.')
                 hidden_password2 = hidden_password[:]
 
                 if letter_or_word == "l":
@@ -90,6 +95,7 @@ while True:
 
                     if hidden_password2 == hidden_password:
                         points += 1
+                        not_in_word.append(letter_guess)
                         print("Boo! You have -1 points You bastard!")
 
                 elif letter_or_word == "w":
@@ -99,7 +105,39 @@ while True:
 
                     if word_guess == password:
                         print("Great! You won the game!")
+                        end_time = datetime.now()
+                        print('Duration: {}'.format(end_time - start_time))
+
+                        with open("Hangman/score.txt", "a") as score:
+                            score.write('Name: {}  '.format(user_name))
+                            score.write('Duration: {}'.format(end_time - start_time))
+                            score.write("\n")
+
+                        with open("Hangman/score.txt", "r") as scores:
+                            dic_score = {}
+                            for line in scores:
+                                (key, val) = line.split("  ")
+                                dic_score[key] = val
+
+                        temp_scores = [(k, dic_score[k]) for k in sorted(dic_score, key = dic_score.get, reverse = False)]
+
+                        while True:
+                            if len(temp_scores) > 10:
+                                del temp_scores[-1]
+                            else:
+                                break
+
+                        with open("Hangman/score.txt", "w") as final_scores:
+                            final_scores.write(''.join('{}  {}'.format(x[0],x[1]) for x in temp_scores))
+
+                        with open("Hangman/score.txt", "r") as scores:
+                            i=0
+                            for line in scores:
+                                print(i+1, line, end = "")
+                                i += 1
+                        
                         break
+                    
                     else:
                         points += 2
                         print("Boo! You have -2 points You bastard!")
@@ -109,19 +147,101 @@ while True:
 
             elif ("".join(hidden_password)) == password:
                 print("Great! You won the game!")
+                end_time = datetime.now()
+                print('Duration: {}'.format(end_time - start_time))
+
+                with open("Hangman/score.txt", "a") as score:
+                    score.write('Name: {}  '.format(user_name))
+                    score.write('Duration: {}'.format(end_time - start_time))
+                    score.write("\n")
+
+                with open("Hangman/score.txt", "r") as scores:
+                    dic_score = {}
+                    for line in scores:
+                        (key, val) = line.split("  ")
+                        dic_score[key] = val
+
+                temp_scores = [(k, dic_score[k]) for k in sorted(dic_score, key = dic_score.get, reverse = False)]
+
+                while True:
+                    if len(temp_scores) > 10:
+                        del temp_scores[-1]
+                    else:
+                        break
+
+                with open("Hangman/score.txt", "w") as final_scores:
+                    final_scores.write(''.join('{}  {}'.format(x[0],x[1]) for x in temp_scores))
+
+                with open("Hangman/score.txt", "r") as scores:
+                    i=0
+                    for line in scores:
+                        print(i+1, line, end = "")
+                        i += 1                
                 break
+
+
         break
+
     elif num == "2":
         print("you just do this and that")
         break
 
     elif num == "3":
-        # plik z tym
+        with open("Hangman/score.txt", "r") as scores:
+                i=0
+                for line in scores:
+                    print(i+1, line, end = "")
+                    i += 1
         break
 
     elif num == "4":
         print("BYE BYE")
         break
 
-end_time = datetime.now()
-print('Duration: {}'.format(end_time - start_time))
+
+
+#temp_scores = "".join(temp_scores)
+
+# while True:
+#     if len(temp_scores) > 10:
+#         del temp_scores[-1]
+#     else:
+#         break
+
+# print(temp_scores)
+# print(json.dump(temp_scores, separators=("  ")))
+
+#  with open("Hangman/score.txt", "w") as new_scores:
+#      json.dump(temp_scores, new_scores, separators=("  "))
+
+
+# end_time = datetime.now()
+# print('Duration: {}'.format(end_time - start_time))
+
+# with open("Hangman/score.txt", "a") as score:
+#     score.write('Name: {}  '.format(user_name))
+#     score.write('Duration: {}'.format(end_time - start_time))
+#     score.write("\n")
+
+# with open("Hangman/score.txt", "r") as scores:
+#     dic_score = {}
+#     for line in scores:
+#         (key, val) = line.split("  ")
+#         dic_score[key] = val
+
+# temp_scores = [(k, dic_score[k]) for k in sorted(dic_score, key = dic_score.get, reverse = False)]
+
+# while True:
+#     if len(temp_scores) > 10:
+#         del temp_scores[-1]
+#     else:
+#         break
+
+# with open("Hangman/score.txt", "w") as final_scores:
+#     final_scores.write(''.join('{}  {}'.format(x[0],x[1]) for x in temp_scores))
+
+# with open("Hangman/score.txt", "r") as scores:
+#     i=0
+#     for line in scores:
+#         print(i+1, line, end = "")
+#         i += 1
