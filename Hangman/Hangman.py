@@ -1,13 +1,15 @@
 import random
 from datetime import datetime
+
 hangman = (
-"\n  ##   ##    ###    ##    ##    ####    ##     ##    ###    ##    ##   _______ \n  ##   ##   ## ##   ##    ##   ##  ##   ###   ###   ## ##   ##    ##   |      |  \n  ##   ##  ##   ##  ####  ##  ##        #### ####  ##   ##  ####  ##   |      O _ (C'mon, hang me!)\n  #######  #######  ## ## ##  ##  ####  ## ### ##  #######  ## ## ##   |     /|\ \n  ##   ##  ##   ##  ##  ####  ##    ##  ##  #  ##  ##   ##  ##  ####   |     / \ \n  ##   ##  ##   ##  ##   ###   ##  ##   ##     ##  ##   ##  ##   ###   |\ \n  ##   ##  ##   ##  ##    ##    ####    ##     ##  ##   ##  ##    ##   | \ \n \n  Game developed by two clever and handsome students: Mateusz Marurczak & Krzysiek Jodłowski \n",
-"\n_______\n|      |\n| \n| \n| \n|\ \n| \ \n",
-"\n_______\n|      |\n|      O _ (Why are you doing this to me?)\n| \n| \n|\ \n| \ \n",
-"\n_______\n|      |\n|      O _ (One, two, three, my hands is what you hang for me!)\n|     / \ \n| \n|\ \n| \ \n",
-"\n_______\n|      |\n|      O _ (I do not like it very much..)\n|     /|\ \n| \n|\ \n| \ \n",
-"\n_______\n|      |\n|      O _ (Last chance, cowboy!)\n|     /|\ \n|     / \ \n|\ \n| \ \n",
-"\n_______\n|      |\n|      x _ (I'm dead LOL, You happy?)\n|     /|\ \n|     / \ \n|\ \n| \ \n")
+    "\n  ##   ##    ###    ##    ##    ####    ##     ##    ###    ##    ##   _______ \n  ##   ##   ## ##   ##    ##   ##  ##   ###   ###   ## ##   ##    ##   |      |  \n  ##   ##  ##   ##  ####  ##  ##        #### ####  ##   ##  ####  ##   |      O _ (C'mon, hang me!)\n  #######  #######  ## ## ##  ##  ####  ## ### ##  #######  ## ## ##   |     /|\ \n  ##   ##  ##   ##  ##  ####  ##    ##  ##  #  ##  ##   ##  ##  ####   |     / \ \n  ##   ##  ##   ##  ##   ###   ##  ##   ##     ##  ##   ##  ##   ###   |\ \n  ##   ##  ##   ##  ##    ##    ####    ##     ##  ##   ##  ##    ##   | \ \n \n  Game developed by two clever and handsome students: Mateusz Marurczak & Krzysiek Jodłowski \n",
+    "\n_______\n|      |\n| \n| \n| \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      O _ (Why are you doing this to me?)\n| \n| \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      O _ (One, two, three, my hands is what you hang for me!)\n|     / \ \n| \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      O _ (I do not like it very much..)\n|     /|\ \n| \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      O _ (Last chance, cowboy!)\n|     /|\ \n|     / \ \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      x _ (I'm dead LOL, You happy?)\n|     /|\ \n|     / \ \n|\ \n| \ \n")
+
 
 def rysowanie(points):
     if points == 0:
@@ -22,6 +24,7 @@ def rysowanie(points):
         print(hangman[5])
     else:
         print(hangman[6])
+
 
 start_time = datetime.now()
 dic = {}
@@ -109,11 +112,11 @@ while True:
                 break
         break
     elif num == "2":
-       print("you just do this and that")
-       break
+        print("you just do this and that")
+        break
 
     elif num == "3":
-        #plik z tym
+        # plik z tym
         break
 
     elif num == "4":
@@ -122,4 +125,3 @@ while True:
 
 end_time = datetime.now()
 print('Duration: {}'.format(end_time - start_time))
-
