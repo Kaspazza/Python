@@ -1,7 +1,34 @@
 import random
 from datetime import datetime
+
+hangman = (
+    "\n  ##   ##    ###    ##    ##    ####    ##     ##    ###    ##    ##   _______ \n  ##   ##   ## ##   ##    ##   ##  ##   ###   ###   ## ##   ##    ##   |      |  \n  ##   ##  ##   ##  ####  ##  ##        #### ####  ##   ##  ####  ##   |      O _ (C'mon, hang me!)\n  #######  #######  ## ## ##  ##  ####  ## ### ##  #######  ## ## ##   |     /|\ \n  ##   ##  ##   ##  ##  ####  ##    ##  ##  #  ##  ##   ##  ##  ####   |     / \ \n  ##   ##  ##   ##  ##   ###   ##  ##   ##     ##  ##   ##  ##   ###   |\ \n  ##   ##  ##   ##  ##    ##    ####    ##     ##  ##   ##  ##    ##   | \ \n \n  Game developed by two clever and handsome students: Mateusz Marurczak & Krzysiek Jodłowski \n",
+    "\n_______\n|      |\n| \n| \n| \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      O _ (Why are you doing this to me?)\n| \n| \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      O _ (One, two, three, my hands is what you hang for me!)\n|     / \ \n| \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      O _ (I do not like it very much..)\n|     /|\ \n| \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      O _ (Last chance, cowboy!)\n|     /|\ \n|     / \ \n|\ \n| \ \n",
+    "\n_______\n|      |\n|      x _ (I'm dead LOL, You happy?)\n|     /|\ \n|     / \ \n|\ \n| \ \n")
+
+
+def rysowanie(points):
+    if points == 0:
+        print(hangman[1])
+    elif points == 1:
+        print(hangman[2])
+    elif points == 2:
+        print(hangman[3])
+    elif points == 3:
+        print(hangman[4])
+    elif points == 4:
+        print(hangman[5])
+    else:
+        print(hangman[6])
+
+
 start_time = datetime.now()
 dic = {}
+print(hangman[0])
 print("Welcome to hangman, his life depends on you!")
 print("1.Start game")
 print("2.How to play")
@@ -15,7 +42,7 @@ while True:
                 (key, val) = line.split(" | ")
                 dic[key] = val
         i = 0
-        points = 5
+        points = 0
         password = random.choice(list(dic.values()))
         password = password.upper()
         password = password.replace('\n', '')
@@ -35,7 +62,11 @@ while True:
         print("".join(hidden_password))
 
         while True:
-            if points > 0 and ("".join(hidden_password)) != password:
+            rysowanie(points)
+            if points >= 5:
+                print("You lost!")
+                break
+            elif points <= 5 and ("".join(hidden_password)) != password:
                 letter_or_word = input('Type: "l" if You want to guess letter or "w" if You want a word.')
                 hidden_password2 = hidden_password[:]
 
@@ -58,7 +89,7 @@ while True:
                     print("".join(hidden_password))
 
                     if hidden_password2 == hidden_password:
-                        points -= 1
+                        points += 1
                         print("Boo! You have -1 points You bastard!")
 
                 elif letter_or_word == "w":
@@ -70,24 +101,22 @@ while True:
                         print("Great! You won the game!")
                         break
                     else:
-                        points -= 2
+                        points += 2
                         print("Boo! You have -2 points You bastard!")
                 else:
                     print("Type a proper letter!")
 
-            elif points <= 0:
-                print("You lost!")
-                break
+
             elif ("".join(hidden_password)) == password:
                 print("Great! You won the game!")
                 break
         break
     elif num == "2":
-       print("you just do this and that")
-       break
+        print("you just do this and that")
+        break
 
     elif num == "3":
-        #plik z tym
+        # plik z tym
         break
 
     elif num == "4":
