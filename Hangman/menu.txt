@@ -1,0 +1,4 @@
+Start game
+How to play
+Show leaderboard
+Exit

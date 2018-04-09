@@ -1,0 +1,60 @@
+  ##   ##    ###    ##    ##    ####    ##     ##    ###    ##    ##   _______ 
+  ##   ##   ## ##   ##    ##   ##  ##   ###   ###   ## ##   ##    ##   |      |  
+  ##   ##  ##   ##  ####  ##  ##        #### ####  ##   ##  ####  ##   |      O _ (C'mon, hang me!)
+  #######  #######  ## ## ##  ##  ####  ## ### ##  #######  ## ## ##   |     /|\ 
+  ##   ##  ##   ##  ##  ####  ##    ##  ##  #  ##  ##   ##  ##  ####   |     / \ 
+  ##   ##  ##   ##  ##   ###   ##  ##   ##     ##  ##   ##  ##   ###   |\ 
+  ##   ##  ##   ##  ##    ##    ####    ##     ##  ##   ##  ##    ##   | \ 
+
+  Game developed by two clever and handsome students: Mateusz Marurczak & Krzysiek Jod³owski
+
+  Welcome to hangman, his life depends on you!
+  Choose Your option by pressing a number and enter:
+
+  _______
+  |     |
+  |      
+  | 
+  | 
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     O _ (Why are you doing this to me?) 
+  | 
+  | 
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     O _ (One, two, three, my hands is what you hang for me!) 
+  |    / \
+  | 
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     O _ (I do not like it very much..) 
+  |    /|\
+  | 
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     O _ (Last chance, cowboy!) 
+  |    /|\
+  |    / \
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     x _ (I'm dead LOL, You happy?) 
+  |    /|\
+  |    / \
+  |\ 
+  | \ 
