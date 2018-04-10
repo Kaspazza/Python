@@ -122,12 +122,13 @@ def printing_password(password, hidden_password):
 
 
 def checking_password(number):
-    global points
+    global points, hidden_password2
     if hidden_password2 == hidden_password:
         points += number
     time.sleep(1)
     print("\nBoo! You have +", number, "penalty points!")
     time.sleep(1)
+    hidden_password2 = hidden_password
     if points < 4:
         manage_graphics(points)
     elif points == 4:
@@ -190,10 +191,10 @@ def checking(password):
             letter()
         elif letter_or_word == "f":
             word()
+        else:
+            print('You can write only "l" or "f"')
     elif password == "".join(hidden_password):
         winrar()
-    else:
-        print('You can write only "l" or "f"')
 
 
 def guessing_capital():
