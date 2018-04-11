@@ -4,10 +4,17 @@ from datetime import datetime
 import time
 import shutil
 
-global points, hidden_password, password
 points = 0
 hidden_password = []
 hidden_password2 = []
+used = []
+start_time = datetime.now()
+user_name = ""
+
+def name():
+    user_name = input("What's your name?")
+    return user_name
+
 
 
 def print_lines(txt, start, stop):
@@ -48,7 +55,6 @@ def print_hidden(password):
 
 
 def sorting_highscore():
-    global temp_scores
     with open("score.txt", "r") as scores:
         dic_score = {}
         for line in scores:
@@ -58,14 +64,13 @@ def sorting_highscore():
     return temp_scores
 
 
-def save_highscore(start, end):
+def save_highscore(start, end, user_name):
     with open("score.txt", "a") as score:
         score.write('Name: {}  '.format(user_name))
         score.write('Time: {}'.format(end - start))
         score.write("\n")
 
-    sorting_highscore()
-
+    temp_scores = sorting_highscore()
     while len(temp_scores) > 10:
         del temp_scores[-1]
 
@@ -96,7 +101,6 @@ def how_to_play():
 
 
 def random_password():
-    global password
     password = ""
     dic = {}
     with open("countriesandcapitals.txt", "r") as capitals:
@@ -111,6 +115,7 @@ def random_password():
 def printing_password(password, hidden_password):
     global hidden_password2
     hidden_password2 = []
+    print(password)
     for letter in password:
         if letter == " ":
             hidden_password.append(" ")
@@ -122,7 +127,7 @@ def printing_password(password, hidden_password):
 
 
 def checking_password(number):
-    global points, hidden_password2
+    global points, hidden_password2, hidden_password
     if hidden_password2 == hidden_password:
         points += number
     time.sleep(1)
@@ -139,7 +144,8 @@ def checking_password(number):
     return points
 
 
-def letter():
+def letter(password,used):
+    global hidden_password
     print(password)
     letter_guess = input("What's the letter than?").upper()
     for l in password:
@@ -158,9 +164,10 @@ def letter():
 
     checking_password(1)
     used.append(letter_guess)
+    return used
 
 
-def winrar():
+def winrar(start_time, user_name):
     end_time = datetime.now()
     time.sleep(1)
     print("You won!")
@@ -168,64 +175,64 @@ def winrar():
     print("Congratulations!!")
     time.sleep(1)
     print('Your time: {}'.format(end_time - start_time))
-    save_highscore(start_time,end_time)
+    save_highscore(start_time, end_time, user_name)
     time.sleep(2)
     high_score()
     sys.exit()
 
 
-def word():
+def word(password, user_name):
     print(password)
     full_guess = input("What's the name than?").upper()
     if full_guess == password:
-        winrar()
+        winrar(start_time, user_name)
 
     else:
         checking_password(2)
 
 
-def checking(password):
+def checking(password, user_name):
+    global hidden_password
     if password != "".join(hidden_password):
         letter_or_word = input("You want letter(l) or full name(f)?")
         if letter_or_word == "l":
-            letter()
+            letter(password, used)
         elif letter_or_word == "f":
-            word()
+            word(password, user_name)
         else:
             print('You can write only "l" or "f"')
     elif password == "".join(hidden_password):
-        winrar()
+        winrar(start_time, user_name)
 
 
-def guessing_capital():
-    global password, used
-    used = []
+def guessing_capital(password,used, user_name):
+    global points
     while points < 5:
-        checking(password)
+        checking(password, user_name)
         time.sleep(1)
         print("Letters You failed guessing: ", ", ".join(used), end=".\n\n")
 
     time.sleep(2)
     print("You lost!")
     time.sleep(3)
-    welcome()
+    sys.exit()
 
 
-def play_game():
-    global start_time, user_name, points
-    user_name = input("What's your name?")
-    start_time = datetime.now()
-    random_password()
-    printing_password(random_password(), hidden_password)
-    guessing_capital()
+def play_game(user_name):
+    global points, hidden_password
+    user_name += name()
+    password = random_password()
+    printing_password(password, hidden_password)
+    guessing_capital(password, used, user_name)
     points = 0
+    return password
 
 
 def choice():
     pick = input("\nWhat you want to do?")
     while pick != "4":
         if pick == "1":
-            play_game()
+            play_game(user_name)
         elif pick == "2":
             how_to_play()
         elif pick == "3":
