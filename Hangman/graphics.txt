@@ -1,0 +1,83 @@
+ 
+  ##   ##    ###    ##    ##    ####    ##     ##    ###    ##    ##   _______ 
+  ##   ##   ## ##   ##    ##   ##  ##   ###   ###   ## ##   ##    ##   |      |  
+  ##   ##  ##   ##  ####  ##  ##        #### ####  ##   ##  ####  ##   |      O _ (C'mon, hang me!)
+  #######  #######  ## ## ##  ##  ####  ## ### ##  #######  ## ## ##   |     /|\ 
+  ##   ##  ##   ##  ##  ####  ##    ##  ##  #  ##  ##   ##  ##  ####   |     / \ 
+  ##   ##  ##   ##  ##   ###   ##  ##   ##     ##  ##   ##  ##   ###   |\ 
+  ##   ##  ##   ##  ##    ##    ####    ##     ##  ##   ##  ##    ##   | \ 
+
+  Game developed by two clever and handsome students: Mateusz Marurczak & Krzysiek Jodłowski
+
+  Welcome to hangman, his life depends on you!
+  Choose Your option by pressing a number and enter:
+
+  _______
+  |     |
+  |      
+  | 
+  | 
+  |\ 
+  | \    ...a terrible gallows appears...
+
+  _______
+  |     |
+  |     O _ (Why are you doing this to me?) 
+  | 
+  | 
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     O _ (One, two, three, my hands is what you hang for me!) 
+  |    / \
+  | 
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     O _ (I do not like it very much..) 
+  |    /|\
+  | 
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     O _ (Last chance, cowboy!) 
+  |    /|\
+  |    / \
+  |\ 
+  | \ 
+
+  _______
+  |     |
+  |     x _ (I'm dead LOL, You happy?) 
+  |    /|\
+  |    / \
+  |\ 
+  | \ 
+
+ ________________________________________________________________________________________________
+
+    Your role is to save hangman's life by guessing the name of capital.
+
+    The letters of a password to guess are marked with #.
+    Every # responds to the letter of capital.
+    If there is space between "#" symbols, then the capital's name consists more than one word.
+
+    You can try to guess a single letter or the whole name.
+
+    At the beginning of the game, You have 0 points. 
+    If You do not guess the letter you will gain 1 penalty point. 
+    If You do not guess the whole password, You gain 2 penalty points. 
+
+    Gaining 6 points or more is equivalent to Hangman's death.
+
+    When You win, check if You have not broken the record! 
+
+                                                             Have fun!  ~ Krzysiek and Mateusz.
+ ________________________________________________________________________________________________
+
