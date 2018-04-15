@@ -24,19 +24,19 @@ def manage_graphics(switcher):
         if switcher == 0:
             print_lines(lines, 14, 22)
         elif switcher == 1:
-            print_lines(lines, 22, 30)
+            print_lines(lines, 21, 30)
         elif switcher == 2:
-            print_lines(lines, 30, 38)
+            print_lines(lines, 29, 38)
         elif switcher == 3:
-            print_lines(lines, 38, 46)
+            print_lines(lines, 37, 46)
         elif switcher == 4:
-            print_lines(lines, 45, 54)
+            print_lines(lines, 44, 54)
         elif switcher == 5:
-            print_lines(lines, 53, 62)
+            print_lines(lines, 52, 62)
         elif switcher == 6:
             print_lines(lines, 0, 14)
         elif switcher == 7:
-            print_lines(lines, 62, 83)
+            print_lines(lines, 62, 81)
 
 
 # Printing out menu from file
@@ -150,7 +150,7 @@ def checking_password(number):
     elif points == 4:
         manage_graphics(points)
         print(" Hint: It's a capital of " + country + ".")
-    elif points == 5:
+    elif points >= 5:
         manage_graphics(5)
     return points
 
